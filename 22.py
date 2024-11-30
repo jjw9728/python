@@ -40,3 +40,8 @@ import math
 # print(str(2)*10)
 # print(str(2)+"입니다")
 
+print("| \_/ |")
+print("| q p |    /}")
+print('(  0  )"""\\')
+print('|"^"        |')
+print('| |_/=\\\__ |')
