@@ -196,11 +196,7 @@
 # et = end - start
 # print(f"타자 시간: {et: .2f}초")
 
-# with open("./customer.txt", 'w') as f:
-#     for i in range(3):
-#         name = input("이름 입력 : ")
-#         password = input("비밀번호 입력 : ")
-#         f.write(name + ' ' + password + '\n')
+
         
 
 # with open("./customer.txt", 'r') as f:
@@ -230,6 +226,12 @@
 import os
 dictUser = {}
 
+# with open("./customer.txt", 'w') as f:
+#     for i in range(3):
+#         name = input("이름 입력 : ")
+#         password = input("비밀번호 입력 : ")
+#         f.write(name + ' ' + password + '\n')
+
 with open("customer.txt", 'r') as f:
     for line in f:
         n, p = line.split()
@@ -238,31 +240,33 @@ with open("customer.txt", 'r') as f:
 print(dictUser)
 
 # for i in range(100) :
-name = input("이름을 입력하세요: ")
+name = str(input("이름을 입력하세요: "))
 pw = input("비밀번호를 입력하세요: ")
 
 if pw == dictUser.get(name):
     print("로그인 성공!")
     phone = input("전화번호를 입력하세요: ")
+    
+    
     if os.path.exists("member1.txt"):
         with open("member1.txt", 'r') as f1:
-            data = f1.readlines()
-        with open("member1.txt", 'a') as f1:
-            if name in data:
-                f1.seek(str.find(name))
-                f1.write(name + ' ' + phone + '\n')
-                f1.close()
-            else:
-                f1.write(name + ' ' + phone + '\n')
-                f1.close()
+            lines = f1.readlines()
+            filtered_lines = [line for line in lines if name not in line]
+            # print(filtered_lines)
+          
+        with open("member1.txt", 'w') as f1:
+            f1.writelines(filtered_lines)
+            f1.write(name + ' ' + phone + '\n')  
+            f1.close()
 
     else:
         with open("member1.txt", 'w') as f1:
-           f1.write(name + ' ' + phone + '\n')
-           f1.close()
+            f1.write(name + ' ' + phone + '\n')  
+            f1.close()
 
 else:
-    print("로그인 실패!")    
+    print("로그인 실패!") 
+  
 
         
         
